@@ -12,17 +12,17 @@ namespace FashionEcommerce.Models
         public int Id { get; set; }  // Khóa chính
 
         [StringLength(50)]
-        public string Username { get; set; }  // Tên đăng nhập (có thể null)
+        public string? Username { get; set; }  // Tên đăng nhập (có thể null)
 
         [StringLength(255)]
-        public string PasswordHash { get; set; }  // Mật khẩu đã hash (có thể null cho đăng nhập Google)
+        public string? PasswordHash { get; set; }  // Mật khẩu đã hash (có thể null cho đăng nhập Google)
 
         [Required]
         [StringLength(100)]
         public string Email { get; set; }  // Email duy nhất, bắt buộc
 
         [StringLength(100)]
-        public string GoogleId { get; set; }  // ID Google cho đăng nhập OAuth
+        public string? GoogleId { get; set; }  // ID Google cho đăng nhập OAuth
 
         public DateTime? DateOfBirth { get; set; }  // Ngày sinh
 
@@ -31,13 +31,13 @@ namespace FashionEcommerce.Models
         public string FullName { get; set; }  // Họ và tên đầy đủ
 
         [StringLength(15)]
-        public string PhoneNumber { get; set; }  // Số điện thoại
+        public string? PhoneNumber { get; set; }  // Số điện thoại
 
         [StringLength(500)]
-        public string AvatarUrl { get; set; }  // URL ảnh đại diện
+        public string? AvatarUrl { get; set; }  // URL ảnh đại diện
 
         [StringLength(20)]
-        public string Role { get; set; }  // Vai trò (Customer, Admin, etc.)
+        public string? Role { get; set; }  // Vai trò (Customer, Admin, etc.)
 
         public bool? IsLocked { get; set; }  // Tài khoản có bị khóa không
 

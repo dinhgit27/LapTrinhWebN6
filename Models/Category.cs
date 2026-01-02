@@ -23,7 +23,7 @@ namespace FashionEcommerce.Models
         public bool? IsActive { get; set; }  // Danh mục có đang hoạt động không
 
         // Navigation properties
-        public virtual Category Parent { get; set; }  // Danh mục cha
+        public virtual Category? Parent { get; set; }  // Danh mục cha
         public virtual ICollection<Category> Children { get; set; } = new HashSet<Category>();  // Danh mục con
         public virtual ICollection<Product> Products { get; set; } = new HashSet<Product>();  // Sản phẩm trong danh mục
     }

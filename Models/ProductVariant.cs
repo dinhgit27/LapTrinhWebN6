@@ -28,9 +28,9 @@ namespace FashionEcommerce.Models
         public decimal? PriceModifier { get; set; }  // Điều chỉnh giá so với giá cơ bản của sản phẩm
 
         // Navigation properties
-        public virtual Product Product { get; set; }  // Sản phẩm gốc
-        public virtual MasterColor Color { get; set; }  // Màu sắc
-        public virtual MasterSize Size { get; set; }  // Kích thước
+        public virtual Product? Product { get; set; }  // Sản phẩm gốc
+        public virtual MasterColor? Color { get; set; }  // Màu sắc
+        public virtual MasterSize? Size { get; set; }  // Kích thước
         public virtual ICollection<CartItem> CartItems { get; set; } = new HashSet<CartItem>();  // Xuất hiện trong giỏ hàng
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new HashSet<OrderDetail>();  // Chi tiết đơn hàng
     }
