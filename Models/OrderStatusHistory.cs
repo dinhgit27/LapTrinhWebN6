@@ -11,16 +11,21 @@ namespace FashionEcommerce.Models
         [Required]
         public int OrderId { get; set; }
 
+        public int? PreviousStatus { get; set; }
+
         [Required]
-        [StringLength(50)]
-        public string Status { get; set; }
+        public int NewStatus { get; set; }
 
-        public DateTime ChangedAt { get; set; } = DateTime.Now;
+        [StringLength(255)]
+        public string Note { get; set; }
 
-        public int? ChangedBy { get; set; } // User Id
+        [StringLength(100)]
+        public string UpdatedBy { get; set; }
+
+        public DateTime? Timestamp { get; set; }
 
         // Navigation properties
         public virtual Order Order { get; set; }
-        public virtual User ChangedByUser { get; set; }
     }
+}
 }

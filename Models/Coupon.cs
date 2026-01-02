@@ -13,20 +13,20 @@ namespace FashionEcommerce.Models
         public string Code { get; set; }
 
         [Required]
-        [StringLength(20)]
-        public string DiscountType { get; set; } // e.g., "Percent", "Fixed"
+        public int UserId { get; set; }
 
         [Required]
-        public decimal DiscountValue { get; set; }
+        public int PromotionId { get; set; }
 
-        public DateTime? ExpiryDate { get; set; }
+        public bool? IsUsed { get; set; }
 
-        public bool? IsActive { get; set; } = true;
+        [Required]
+        public DateTime ExpiryDate { get; set; }
 
-        public int? UsageLimit { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-        public int UsageCount { get; set; } = 0;
-
-        // No direct navigation properties defined
+        // Navigation properties
+        public virtual User User { get; set; }
+        public virtual Promotion Promotion { get; set; }
     }
 }
