@@ -37,7 +37,7 @@ namespace FashionEcommerce.Models
         public decimal? DiscountAmount { get; set; }  // Số tiền giảm giá
 
         [StringLength(50)]
-        public string CouponCode { get; set; }  // Mã giảm giá áp dụng
+        public string? CouponCode { get; set; }  // Mã giảm giá áp dụng
 
         public decimal? ShippingFee { get; set; }  // Phí vận chuyển
 
@@ -49,12 +49,12 @@ namespace FashionEcommerce.Models
         public string PaymentMethod { get; set; }  // Phương thức thanh toán
 
         [StringLength(20)]
-        public string PaymentStatus { get; set; }  // Trạng thái thanh toán
+        public string? PaymentStatus { get; set; }  // Trạng thái thanh toán
 
         public int? Status { get; set; }  // Trạng thái đơn hàng (0: Pending, 1: Confirmed, etc.)
 
         // Navigation properties
-        public virtual User User { get; set; }  // Khách hàng đặt hàng
+        public virtual User? User { get; set; }  // Khách hàng đặt hàng
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new HashSet<OrderDetail>();  // Chi tiết sản phẩm trong đơn
         public virtual ICollection<OrderStatusHistory> OrderStatusHistories { get; set; } = new HashSet<OrderStatusHistory>();  // Lịch sử thay đổi trạng thái
     }

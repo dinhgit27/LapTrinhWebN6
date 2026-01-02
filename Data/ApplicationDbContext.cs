@@ -47,8 +47,8 @@ namespace FashionEcommerce.Data
             modelBuilder.Entity<ArticleCategory>().HasIndex(ac => ac.Slug).IsUnique();  // Slug danh mục bài viết duy nhất
 
             // Cấu hình check constraints - ràng buộc kiểm tra
-            modelBuilder.Entity<ProductReview>().HasCheckConstraint("CK_ProductReview_Rating", "[Rating] >= 1 AND [Rating] <= 5");  // Rating từ 1-5
-            modelBuilder.Entity<Promotion>().HasCheckConstraint("CK_Promotion_DiscountType", "[DiscountType] IN ('FIXED_AMOUNT', 'PERCENTAGE')");  // Loại giảm giá hợp lệ
+            modelBuilder.Entity<ProductReview>().ToTable(t => t.HasCheckConstraint("CK_ProductReview_Rating", "[Rating] >= 1 AND [Rating] <= 5"));  // Rating từ 1-5
+            modelBuilder.Entity<Promotion>().ToTable(t => t.HasCheckConstraint("CK_Promotion_DiscountType", "[DiscountType] IN ('FIXED_AMOUNT', 'PERCENTAGE')"));  // Loại giảm giá hợp lệ
 
             // Cấu hình self-referencing relationship cho Categories - quan hệ đệ quy
             modelBuilder.Entity<Category>()
