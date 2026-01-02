@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace FashionEcommerce.Models
@@ -12,15 +11,17 @@ namespace FashionEcommerce.Models
         public int UserId { get; set; }
 
         [Required]
-        public int ProductVariantId { get; set; }
+        public int ProductId { get; set; }
 
         [Required]
-        public int Quantity { get; set; }
+        public int ProductVariantId { get; set; }
 
-        public DateTime AddedAt { get; set; } = DateTime.Now;
+        public int? Quantity { get; set; }
 
         // Navigation properties
         public virtual User User { get; set; }
+        public virtual Product Product { get; set; }
         public virtual ProductVariant ProductVariant { get; set; }
     }
+}
 }
