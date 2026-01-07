@@ -19,7 +19,7 @@ namespace FashionEcommerce.Models
 
         [Required]
         [StringLength(100)]
-        public string Email { get; set; }  // Email duy nhất, bắt buộc
+        public string Email { get; set; } = null!;  // Email duy nhất, bắt buộc
 
         [StringLength(100)]
         public string? GoogleId { get; set; }  // ID Google cho đăng nhập OAuth
@@ -28,7 +28,7 @@ namespace FashionEcommerce.Models
 
         [Required]
         [StringLength(100)]
-        public string FullName { get; set; }  // Họ và tên đầy đủ
+        public string FullName { get; set; } = null!;  // Họ và tên đầy đủ
 
         [StringLength(15)]
         public string? PhoneNumber { get; set; }  // Số điện thoại
