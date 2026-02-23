@@ -138,3 +138,14 @@ D:\LapTrinhWebN6\obj\Debug\net8.0\refint\FashionEcommerce.API.dll
 D:\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.pdb
 D:\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.genruntimeconfig.cache
 D:\LapTrinhWebN6\obj\Debug\net8.0\ref\FashionEcommerce.API.dll
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.csproj.AssemblyReference.cache
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.AssemblyInfoInputs.cache
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.AssemblyInfo.cs
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.csproj.CoreCompileInputs.cache
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.sourcelink.json
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.dll
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\refint\FashionEcommerce.API.dll
+C:\Users\SikunZed\Downloads\Lập trình Web\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.pdb
