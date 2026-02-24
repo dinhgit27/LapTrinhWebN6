@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"2AXj3zk9kF/N2X7Lbm2QRFxPqd6Se4RpOS2ASoEnNBk=","Source":"FashionEcommerce.API","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "RQYthbfgbswIn7rYMAlmI/iqLg7T2rQO+dwL+oyUsGc=",
+  "Source": "FashionEcommerce.API",
+  "BasePath": "_content/FashionEcommerce.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

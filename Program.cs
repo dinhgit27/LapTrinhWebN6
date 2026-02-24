@@ -1,4 +1,4 @@
-using FashionEcommerce.API.Data;
+using FashionEcommerce.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
