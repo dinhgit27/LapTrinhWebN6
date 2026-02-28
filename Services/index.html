@@ -8,6 +8,17 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+<script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } 
+            else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 <body>
 
     <header class="header">
@@ -17,7 +28,7 @@
             </a>
             <nav class="navbar">
                 <ul class="nav-list">
-                    <li><a href="#" class="active">Trang Chủ</a></li>
+                    <li><a href="#">Trang Chủ</a></li>
                     <li><a href="#">Sản Phẩm</a></li>
                     <li><a href="#">Bộ Sưu Tập</a></li>
                     <li><a href="#">Về Chúng Tôi</a></li>
@@ -25,6 +36,8 @@
                 </ul>
             </nav>
             <div class="header-actions">
+                <div><a href="#">Đăng Ký</a></div>
+                <div><a href="#">Đăng Nhập</a></div>
                 <button class="icon-btn"><i class="ri-search-line"></i></button>
                 <button class="icon-btn"><i class="ri-shopping-cart-line"></i></button>
             </div>
@@ -58,12 +71,12 @@
                 <div class="gallery-col large">
                     <div class="card-img">
                         <span class="price-tag">Hoodie Oversized <br> <b>550.000đ</b></span>
-                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" alt="Model 1">
+                        <img src="images/nguoimau01.jpg" alt="Model 1">
                     </div>
                 </div>
                 <div class="gallery-col stack">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=1000&auto=format&fit=crop" alt="Model 2">
+                        <img src="images/nguoimau02.jpg" alt="Model 2">
                         <span class="tag-new">MỚI</span>
                     </div>
                     <div class="card-img">
@@ -71,7 +84,7 @@
                             <span>Áo Khoác Bomber</span>
                             <small>Chất liệu cao cấp</small>
                         </div>
-                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1000&auto=format&fit=crop" alt="Model 3">
+                        <img src="images/aokhoacBomBer.jpg" alt="Model 3">
                     </div>
                 </div>
             </div>
@@ -90,7 +103,7 @@
             
             <div class="grid-3">
                 <div class="cat-card">
-                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop" alt="Áo Thun">
+                    <img src="images/aoThun.jpg" alt="Áo Thun">
                     <div class="cat-info">
                         <h3>Áo Thun</h3>
                         <p>45 sản phẩm</p>
@@ -98,7 +111,7 @@
                     <button class="arrow-btn"><i class="ri-arrow-right-line"></i></button>
                 </div>
                 <div class="cat-card">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=800&auto=format&fit=crop" alt="Hoodie">
+                    <img src="images/aoHoodie.jpg" alt="Hoodie">
                     <div class="cat-info">
                         <h3>Hoodie</h3>
                         <p>28 sản phẩm</p>
@@ -106,9 +119,33 @@
                     <button class="arrow-btn"><i class="ri-arrow-right-line"></i></button>
                 </div>
                 <div class="cat-card">
-                    <img src="https://images.unsplash.com/photo-1542272454374-d52b864a96af?q=80&w=800&auto=format&fit=crop" alt="Quần">
+                    <img src="images/quan.jpg" alt="Quần">
                     <div class="cat-info">
                         <h3>Quần</h3>
+                        <p>38 sản phẩm</p>
+                    </div>
+                    <button class="arrow-btn"><i class="ri-arrow-right-line"></i></button>
+                </div>
+                <div class="cat-card">
+                    <img src="images/aoSomi.jpg" alt="Áo Sơ Mi">
+                    <div class="cat-info">
+                        <h3>Áo Sơ Mi</h3>
+                        <p>38 sản phẩm</p>
+                    </div>
+                    <button class="arrow-btn"><i class="ri-arrow-right-line"></i></button>
+                </div>
+                <div class="cat-card">
+                    <img src="images/aoKhoac.jpg" alt="Áo Khoác">
+                    <div class="cat-info">
+                        <h3>Áo Khoác</h3>
+                        <p>38 sản phẩm</p>
+                    </div>
+                    <button class="arrow-btn"><i class="ri-arrow-right-line"></i></button>
+                </div>
+                <div class="cat-card">
+                    <img src="images/aoPolo.jpg" alt="Áo Polo">
+                    <div class="cat-info">
+                        <h3>Áo Polo</h3>
                         <p>38 sản phẩm</p>
                     </div>
                     <button class="arrow-btn"><i class="ri-arrow-right-line"></i></button>

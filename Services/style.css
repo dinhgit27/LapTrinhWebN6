@@ -22,6 +22,29 @@
     display: flex;
     align-items: center;
 }
+.header-actions {
+    display: flex;             
+    align-items: center;       
+    gap: 20px;                 
+}
+.header-actions div a {
+    font-weight: 500;          
+    font-size: 0.95rem;        
+    transition: 0.3s;
+}
+
+.header-actions div a:hover {
+    color: var(--accent-color); 
+}
+
+.header-actions .icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;             
+    align-items: center;
+}
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -57,7 +80,23 @@ ul { list-style: none; }
 }
 
 /* --- HEADER --- */
-.header { padding: 20px 0; background: transparent; }
+.header { 
+
+    position: fixed; /* Cố định trên màn hình, đè lên phần Hero */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    
+    background-color: transparent;
+    box-shadow: none; 
+    
+    padding: 20px 0; 
+    transition: all 0.3s ease-in-out; }
+.header.scrolled {
+    background-color: #ffffff; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    padding: 10px 0; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; }
 .nav-list { display: flex; gap: 40px; }
 .nav-list a { font-weight: 500; font-size: 0.95rem; }
@@ -70,12 +109,11 @@ ul { list-style: none; }
     width: 100%;
     
     /* Tạo khoảng không gian thở phía trên và dưới cho khối Hero */
-    padding-top: 80px; 
-    padding-bottom: 80px;
+    padding-top: 140px; 
     
-    /* (Tùy chọn) Bo tròn nhẹ 2 góc bên dưới để tạo sự mềm mại */
-    border-bottom-left-radius: 40px; 
-    border-bottom-right-radius: 40px; 
+    padding-bottom: 80px;
+    margin-bottom: 50px;
+
     
     margin-bottom: 50px;}
 .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; }
@@ -144,7 +182,10 @@ ul { list-style: none; }
 .section-header h2 { font-family: var(--font-heading); font-size: 2.5rem; margin-top: 5px; }
 .view-all { font-weight: 600; font-size: 0.9rem; }
 
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-3 { display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(2, 1fr);    
+    gap: 24px; }
 .cat-card { position: relative; border-radius: var(--border-radius); overflow: hidden; height: 250px; }
 .cat-card img { width: 100%; height: 100%; transition: transform 0.4s; }
 .cat-card:hover img { transform: scale(1.05); }
