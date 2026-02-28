@@ -4467,32 +4467,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SikunZed\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\DINH\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SikunZed\\Downloads\\Lập trình Web\\LapTrinhWebN6\\FashionEcommerce.API.csproj",
+      "projectUniqueName": "C:\\LapTrinhWebN6\\FashionEcommerce.API.csproj",
       "projectName": "FashionEcommerce.API",
-      "projectPath": "C:\\Users\\SikunZed\\Downloads\\Lập trình Web\\LapTrinhWebN6\\FashionEcommerce.API.csproj",
-      "packagesPath": "C:\\Users\\SikunZed\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SikunZed\\Downloads\\Lập trình Web\\LapTrinhWebN6\\obj\\",
+      "projectPath": "C:\\LapTrinhWebN6\\FashionEcommerce.API.csproj",
+      "packagesPath": "C:\\Users\\DINH\\.nuget\\packages\\",
+      "outputPath": "C:\\LapTrinhWebN6\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\SikunZed\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\DINH\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
