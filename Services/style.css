@@ -59,14 +59,100 @@ ul { list-style: none; }
 .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; }
 .section { padding: 80px 0; }
 .text-center { text-align: center; }
+.text-center h2 {
+    font-family: var(--font-heading); font-size: 2.5rem; margin-top: 5px;
+}
+
+/* --- HIỆU ỨNG NÚT ĐĂNG KÝ / ĐĂNG NHẬP (UIVERSE) --- */
+.cssbuttons-io {
+  position: relative;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px; /* Chỉnh nhỏ lại một chút cho hợp với Header */
+  letter-spacing: 0.05em;
+  border-radius: 0.8em;
+  cursor: pointer;
+  border: none;
+  /* Bạn có thể giữ màu Gradient tím gốc, hoặc đổi sang màu xanh Teal của web: */
+  /* background: linear-gradient(to right, #0D9488, #0F766E); */
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: ghostwhite;
+  overflow: hidden;
+  display: inline-flex; /* Quan trọng để thẻ <a> hiển thị đúng */
+  text-decoration: none;
+}
+
+.cssbuttons-io span {
+  position: relative;
+  z-index: 10; /* Đảm bảo chữ luôn nằm trên lớp nền đen */
+  transition: color 0.4s;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6em 1.2em; /* Bo hẹp padding lại cho vừa thanh menu */
+}
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cssbuttons-io::before {
+  content: "";
+  background: var(--primary-color); /* Lớp nền trượt qua dùng màu xanh đen của web */
+  width: 120%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+/* Khi di chuột vào, trượt lớp nền đen đi */
+.cssbuttons-io:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+.cssbuttons-io:active {
+  transform: scale(0.95);
+}
 
 /* --- BUTTONS & BADGES --- */
 .btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 50px;
-    font-weight: 600;
-    cursor: pointer;
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  color: var(--primary-color); /* Thêm màu chữ mặc định cho dễ đọc */
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600; /* Cho chữ đậm lên 1 chút cho nét */
+  transition: all 0.5s ease;
+  
+  /* 2 dòng này rất quan trọng vì nút của bạn đang dùng thẻ <a> */
+  display: inline-block; 
+  text-align: center;
+}
+
+.btn:hover {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%); /* Màu tím đặc trưng của mẫu */
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+.btn:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
 }
 .btn-primary { background: var(--primary-color); color: var(--white); }
 .btn-primary:hover { background: #1E293B; }
@@ -200,15 +286,58 @@ ul { list-style: none; }
 }
 
 /* --- PROMOTION --- */
-.promo-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; height: 450px; }
-.promo-large, .promo-small {
-    position: relative; border-radius: var(--border-radius); overflow: hidden; height: 100%;
-    display: flex; align-items: center; padding: 40px;
+.section.promotion {
+    background-color: #FDF6E3; 
+    padding-top: 80px;
+    padding-bottom: 80px;
+    margin-top: 40px; 
 }
-.promo-stack { display: flex; flex-direction: column; gap: 24px; }
+.promo-grid { display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    gap: 24px; }
+.promo-grid .section-header {
+    grid-column: 1 / -1; 
+    margin-bottom: 20px; 
+}
+.promo-large, .promo-small {
+    display: flex; 
+    align-items: center; 
+    padding: 40px;
+
+    position: relative; 
+    border-radius: var(--border-radius); 
+    overflow: hidden; 
+    z-index: 1;
+}
+
+.bg-img {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1;
+    object-fit: cover;
+
+    transition: transform 0.4s; 
+}
+
+.promo-large:hover .bg-img,
+.promo-small:hover .bg-img {
+    transform: scale(1.05);
+}
+
+.promo-stack { display: flex; 
+    flex-direction: column; 
+    gap: 24px; }
 .promo-small { height: 50%; padding: 25px; }
 .bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-.promo-content { color: white; max-width: 60%; }
+.promo-content { 
+    color: white; 
+    max-width: 60%; 
+    position: relative; 
+    z-index: 2;
+}
 .promo-content h2 { font-family: var(--font-heading); font-size: 2.5rem; margin: 15px 0; }
 .promo-content-sm { color: var(--primary-color); position: relative; z-index: 1; }
 .promo-small.dark .promo-content-sm { color: white; }
@@ -220,16 +349,73 @@ ul { list-style: none; }
 /* --- PRODUCTS --- */
 .filter-bar { display: flex; justify-content: space-between; margin: 40px 0; }
 .filter-tabs .tab {
-    background: none; border: 1px solid #E2E8F0; padding: 8px 20px;
-    border-radius: 30px; margin-right: 10px; cursor: pointer; font-family: var(--font-body);
+    padding: 12px 28px; /* Tinh chỉnh lại để vừa vặn làm Tab lọc */
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: all 0.5s ease;
+  margin-right: 15px;
 }
-.filter-tabs .tab.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+.filter-tabs .tab:hover {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%); /* Màu tím từ code gốc */
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+/* 3. Hiệu ứng khi BẤM CHUỘT (Active) - Lún xuống 10px */
+.filter-tabs .tab:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+
+/* 4. Trạng thái khi TAB ĐÃ ĐƯỢC CHỌN (Nhờ JavaScript gắn class .active) */
+.filter-tabs .tab.active {
+  letter-spacing: 3px; /* Giữ độ giãn chữ để biết là đang chọn */
+  background-color: var(--primary-color); /* Dùng màu chữ chính (xanh đen) cho tab đang chọn */
+  color: white;
+  box-shadow: rgba(15, 23, 42, 0.4) 0px 7px 29px 0px;
+}
 .search-box {
     background: white; border: 1px solid #E2E8F0; padding: 8px 15px;
     border-radius: 30px; display: flex; align-items: center; width: 300px;
 }
 .search-box input { border: none; outline: none; margin-left: 10px; width: 100%; }
+/* Product Grid */
+/* 1. Thiết lập chuyển động mượt mà cho ảnh sản phẩm */
+.prod-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh luôn lấp đầy khung mà không bị méo */
+    transition: transform 0.5s ease; /* Thời gian zoom mất 0.5 giây cho cảm giác cao cấp */
+}
 
+/* 2. Kích hoạt phóng to khi trỏ chuột vào thẻ sản phẩm */
+.product-card:hover .prod-img img {
+    transform: scale(1.08); /* Phóng to ảnh lên 8% */
+}
+
+/* (Tùy chọn thêm) Làm thẻ sản phẩm hơi nổi lên một chút khi hover */
+.product-card { 
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Hiện bóng mờ */
+    transform: translateY(-5px); /* Nhấc toàn bộ thẻ lên 5px */
+}
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
 .product-card { background: white; border-radius: var(--border-radius); padding: 15px; border: 1px solid #f0f0f0; }
 .prod-img { position: relative; border-radius: 12px; overflow: hidden; margin-bottom: 15px; aspect-ratio: 1/1.1; }
