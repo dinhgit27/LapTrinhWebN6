@@ -3,52 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Nhập - Mặc Đúng Chất Mình</title>
+    <title>Đăng Nhập - LocalBrand</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
     
+    <style>
+        /* Tóm tắt nhanh CSS quan trọng để đảm bảo hiển thị đúng */
+        :root { --accent-color: #0D9488; --primary-color: #0F172A; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden; }
+        .login-layout { display: flex; height: 100vh; }
+        
+        /* Hiệu ứng trôi nổi cho Badge */
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .login-left {
+            flex: 1; position: relative;
+            background: linear-gradient(to top, rgba(13, 148, 136, 0.9) 0%, rgba(0,0,0,0.1) 50%), 
+                        url('images/nguoimau02.jpg') center/cover no-repeat;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 60px; color: white;
+        }
+
+        .glass-badge {
+            position: absolute; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px 20px; border-radius: 16px;
+            display: flex; align-items: center; gap: 15px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floating 4s ease-in-out infinite; cursor: pointer;
+        }
+        
+        /* Hiệu ứng Neon 3D khi Hover */
+        .glass-badge:hover {
+            background: rgba(13, 148, 136, 0.3); border-color: var(--accent-color);
+            transform: perspective(1000px) rotateX(10deg) rotateY(10deg) translateY(-10px);
+            box-shadow: 0 0 20px var(--accent-color);
+        }
+
+        .badge-2 { top: 40%; left: 40px; }
+        .badge-3 { top: 55%; right: 40px; }
+
+        .login-right { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
+        .form-wrapper { width: 100%; max-width: 420px; }
+        .brand img { height: 35px; vertical-align: middle; }
+        
+        /* Input & Button styles */
+        .input-box { position: relative; margin-top: 8px; }
+        .input-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94A3B8; }
+        .input-box input { width: 100%; padding: 14px 45px; border: 1px solid #E2E8F0; border-radius: 12px; outline: none; }
+        .input-box .eye-icon { left: auto; right: 15px; cursor: pointer; }
+        
+        .submit-btn {
+            width: 100%; padding: 16px; background: var(--primary-color); color: white;
+            border: none; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.3s;
+            margin-top: 20px;
+        }
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    </style>
 </head>
-<script>
-    const loginLeft = document.querySelector('.login-left');
-    const badges = document.querySelectorAll('.glass-badge');
-    const textContent = document.querySelector('.left-text-content');
-
-    loginLeft.addEventListener('mousemove', (e) => {
-        // Tính toán tọa độ chuột theo phần trăm khung hình
-        const { width, height } = loginLeft.getBoundingClientRect();
-        const mouseX = (e.clientX / width) - 0.5;
-        const mouseY = (e.clientY / height) - 0.5;
-
-        // Làm hình nền chuyển động nhẹ
-        loginLeft.style.backgroundPosition = `${50 + mouseX * 2}% ${50 + mouseY * 2}%`;
-
-        // Làm các Badge di chuyển theo các hướng khác nhau (Parallax)
-        badges.forEach((badge, index) => {
-            const speed = (index + 1) * 20;
-            const x = mouseX * speed;
-            const y = mouseY * speed;
-            badge.style.transform = `translate(${x}px, ${y}px)`;
-        });
-
-        // Làm chữ di chuyển nhẹ
-        textContent.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
-    });
-
-    // Reset vị trí khi chuột rời khỏi vùng ảnh
-    loginLeft.addEventListener('mouseleave', () => {
-        badges.forEach(badge => badge.style.transform = `translate(0, 0)`);
-        textContent.style.transform = `translate(0, 0)`;
-        loginLeft.style.backgroundPosition = `center`;
-    });
-</script>
 <body>
 
     <div class="login-layout">
-        
         <div class="login-left">
-            
-            
             <div class="glass-badge badge-2">
                 <div class="glass-icon"><i class="ri-star-fill"></i></div>
                 <div>
@@ -66,74 +84,128 @@
             </div>
 
             <div class="left-text-content">
-                <span class="sub">BỘ SƯU TẬP 2026</span>
-                <h1>Phong cách<br>định nghĩa bạn</h1>
-                <p>Khám phá hàng nghìn thiết kế độc quyền.</p>
+                <span style="letter-spacing: 2px; font-weight: 600; font-size: 0.9rem;">BỘ SƯU TẬP 2026</span>
+                <h1 style="font-family: 'Montserrat'; font-size: 3.5rem; line-height: 1.1; margin: 15px 0;">Phong cách<br>định nghĩa bạn</h1>
+                <p style="opacity: 0.9;">Khám phá hàng nghìn thiết kế độc quyền.</p>
             </div>
         </div>
 
         <div class="login-right">
-            <a href="index.html" class="back-home"><i class="ri-arrow-left-line"></i> Quay lại</a>
+            <a href="index.html" style="position: absolute; top: 40px; right: 40px; color: #64748B;"><i class="ri-arrow-left-line"></i> Quay lại</a>
 
             <div class="form-wrapper">
-                <div class="brand">
+                <div class="brand" style="font-family: 'Montserrat'; font-size: 1.5rem; font-weight: bold; margin-bottom: 30px;">
                     <img src="images/logo.jpg" alt="Logo"> LocalBrand
                 </div>
                 
-                <h2>Chào mừng trở lại 👋</h2>
-                <p>Đăng nhập để tiếp tục mua sắm</p>
+                <h2 style="font-family: 'Montserrat'; font-size: 2rem; margin-bottom: 10px;">Chào mừng trở lại 👋</h2>
+                <p style="color: #64748B; margin-bottom: 30px;">Đăng nhập để tiếp tục mua sắm</p>
 
-                <div class="social-login">
-                    <button class="social-btn">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" width="20" alt="Google"> Google
-                    </button>
-                    <button class="social-btn">
-                        <i class="ri-facebook-circle-fill"></i> Facebook
-                    </button>
-                </div>
-
-                <div class="divider">
-                    <span>HOẶC ĐĂNG NHẬP VỚI EMAIL</span>
-                </div>
-
-                <form action="index.html">
-                    <div class="input-group">
-                        <label>Email</label>
+                <form id="loginForm"> 
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight: 600; font-size: 0.9rem;">Email</label>
                         <div class="input-box">
                             <i class="ri-mail-line"></i>
-                            <input type="email" placeholder="example@email.com" required>
+                            <input type="email" id="email" placeholder="example@email.com" required>
                         </div>
                     </div>
 
-                    <div class="input-group">
-                        <label>Mật khẩu</label>
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight: 600; font-size: 0.9rem;">Mật khẩu</label>
                         <div class="input-box">
                             <i class="ri-lock-line"></i>
-                            <input type="password" placeholder="••••••••" required>
-                            <i class="ri-eye-off-line eye-icon"></i>
+                            <input type="password" id="password" placeholder="••••••••" required>
+                            <i class="ri-eye-off-line eye-icon" id="togglePassword"></i>
                         </div>
                     </div>
 
-                    <div class="form-actions">
-                        <label><input type="checkbox"> Ghi nhớ đăng nhập</label>
-                        <a href="forgot-password.html">Quên mật khẩu?</a>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 30px;">
+                        <label style="display: flex; align-items: center; gap: 8px; color: #64748B;">
+                            <input type="checkbox"> Ghi nhớ đăng nhập
+                        </label>
+                        <a href="forgot-password.html" style="color: var(--accent-color); font-weight: 600;">Quên mật khẩu?</a>
                     </div>
 
                     <button type="submit" class="submit-btn">
                         Đăng Nhập <i class="ri-arrow-right-line"></i>
                     </button>
                 </form>
-                </form> <div class="login-link">
-                    Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
-                </div>
-                <div class="secure-info">
-                    <span><i class="ri-shield-check-line"></i> Bảo mật SSL</span>
-                    <span><i class="ri-lock-password-line"></i> Mã hóa 256-bit</span>
+
+                <div style="text-align: center; margin-top: 25px; font-size: 0.9rem; color: #64748B;">
+                    Chưa có tài khoản? <a href="register.html" style="color: var(--accent-color); font-weight: 600;">Đăng ký ngay</a>
                 </div>
             </div>
         </div>
-
     </div>
 
+    <script>
+        // 1. Hiệu ứng Parallax cho phần bên trái
+        const loginLeft = document.querySelector('.login-left');
+        const badges = document.querySelectorAll('.glass-badge');
+        const textContent = document.querySelector('.left-text-content');
+
+        loginLeft.addEventListener('mousemove', (e) => {
+            const { width, height } = loginLeft.getBoundingClientRect();
+            const mouseX = (e.clientX / width) - 0.5;
+            const mouseY = (e.clientY / height) - 0.5;
+
+            loginLeft.style.backgroundPosition = `${50 + mouseX * 2}% ${50 + mouseY * 2}%`;
+            badges.forEach((badge, index) => {
+                const speed = (index + 1) * 20;
+                badge.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+            });
+            textContent.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
+        });
+
+        loginLeft.addEventListener('mouseleave', () => {
+            badges.forEach(badge => badge.style.transform = `translate(0, 0)`);
+            textContent.style.transform = `translate(0, 0)`;
+            loginLeft.style.backgroundPosition = `center`;
+        });
+
+        // 2. LOGIC ĐĂNG NHẬP CHÍNH (KẾT NỐI VỚI BACKEND)
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // HÃY KIỂM TRA SỐ PORT TRONG VISUAL STUDIO CỦA BẠN (VD: 7001)
+                const response = await fetch('https://localhost:7001/api/Auth/login', { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json(); 
+
+                    // LƯU DỮ LIỆU VÀO LOCALSTORAGE
+                    localStorage.setItem('token', data.token); 
+                    localStorage.setItem('userId', data.userId);
+                    localStorage.setItem('fullName', data.fullName);
+
+                    alert(`Chào mừng ${data.fullName} quay trở lại! Đăng nhập thành công.`);
+                    window.location.href = 'index.html'; 
+                } else {
+                    const errorMsg = await response.text();
+                    alert('Lỗi: ' + errorMsg);
+                }
+            } catch (error) {
+                alert('Không thể kết nối tới máy chủ! Hãy chắc chắn Backend của bạn đang chạy.');
+            }
+        });
+
+        // 3. Hiện/Ẩn mật khẩu
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#password');
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('ri-eye-line');
+            this.classList.toggle('ri-eye-off-line');
+        });
+    </script>
 </body>
 </html>
