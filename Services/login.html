@@ -6,200 +6,42 @@
     <title>Đăng Nhập - Mặc Đúng Chất Mình</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    
-    <style>
-        /* --- BIẾN CƠ BẢN --- */
-        :root {
-            --primary-color: #0F172A; 
-            --accent-color: #0D9488; 
-            --font-heading: 'Montserrat', sans-serif;
-            --font-body: 'Inter', sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-body); color: var(--primary-color); height: 100vh; overflow: hidden; background: #fff; }
-        a { text-decoration: none; color: inherit; }
-
-        /* --- BỐ CỤC CHIA ĐÔI MÀN HÌNH --- */
-        .login-layout {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-        }
-
-        /* --- PHẦN BÊN TRÁI (HÌNH ẢNH) --- */
-        /* --- PHẦN BÊN TRÁI (HÌNH ẢNH) --- */
-        .login-left {
-            flex: 1; /* Chiếm 50% màn hình */
-            position: relative;
-            /* Giữ nguyên background-image cũ của bạn */
-            background: linear-gradient(to top, rgba(13, 148, 136, 0.9) 0%, rgba(0,0,0,0) 40%), url('images/nguoimau02.jpg') center no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 60px;
-            color: white;
-
-            /* --- SỬA LỖI ẢNH TRÀN RA NGOÀI VÀ THU GỌN ẢNH --- */
-            overflow: hidden; /* Cắt bỏ phần ảnh bị thừa khỏi khung bo tròn */
-            background-size: contain; /* ÉP ẢNH THU NHỎ LẠI ĐỂ HIỂN THỊ TRỌN VẸN TRONG KHUNG */
-            background-size: cover;
-            background-position: center top; /* Điều chỉnh vị trí ảnh để không bị cắt phần đầu người mẫu */
-        }
-
-        /* Thẻ Glassmorphism (Kính mờ) nổi trên ảnh */
-        .glass-badge {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 15px 20px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-
-            animation: floating 4s ease-in-out infinite;
-        }
-        
-
-
-        .badge-1 { top: 40px; left: 40px; padding: 8px 20px; border-radius: 30px; font-weight: bold; font-size: 0.8rem; }
-        .badge-2 { top: 40%; left: 40px; }
-        .badge-3 { top: 55%; right: 40px; }
-        
-        .glass-icon {
-            width: 40px; height: 40px; border-radius: 50%; background: var(--accent-color);
-            display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
-        }
-
-        .left-text-content h1 { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1.1; margin: 10px 0; }
-        .left-text-content p { opacity: 0.9; font-size: 1.1rem; }
-        .left-text-content .sub { letter-spacing: 2px; font-weight: 600; font-size: 0.9rem; }
-
-        /* --- PHẦN BÊN PHẢI (FORM ĐĂNG NHẬP) --- */
-        .login-right {
-            flex: 1; /* Chiếm 50% màn hình */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        /* Nút quay lại trang chủ */
-        .back-home {
-            position: absolute;
-            top: 40px; right: 40px;
-            font-weight: 500; font-size: 0.9rem;
-            display: flex; align-items: center; gap: 5px;
-            color: #64748B; transition: 0.3s;
-        }
-        .back-home:hover { color: var(--accent-color); }
-
-        .form-wrapper { width: 100%; max-width: 420px; }
-        
-        .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; }
-        .brand i { color: white; background: var(--accent-color); padding: 5px; border-radius: 8px; font-size: 1.2rem; }
-
-        .form-wrapper h2 { font-size: 2rem; font-family: var(--font-heading); margin-bottom: 10px; }
-        .form-wrapper > p { color: #64748B; margin-bottom: 30px; }
-
-        /* Nút đăng nhập MXH */
-        .social-login { display: flex; gap: 15px; margin-bottom: 30px; }
-        .social-btn {
-            flex: 1; padding: 12px; border: 1px solid #E2E8F0; border-radius: 12px;
-            background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
-            font-weight: 600; color: var(--primary-color); font-family: var(--font-body); transition: 0.3s;
-        }
-        .social-btn:hover { background: #F8FAFC; border-color: #CBD5E1; }
-        .social-btn i { font-size: 1.2rem; color: #1877F2; } /* Facebook color */
-
-        /* Đường gạch ngang phân cách */
-        .divider {
-            display: flex; align-items: center; text-align: center; margin-bottom: 30px;
-        }
-        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #E2E8F0; }
-        .divider span { padding: 0 15px; color: #94A3B8; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; }
-
-        /* Nhập thông tin */
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
-        .input-box { position: relative; }
-        .input-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 1.2rem; }
-        .input-box input {
-            width: 100%; padding: 14px 15px 14px 45px; border: 1px solid #E2E8F0;
-            border-radius: 12px; outline: none; font-family: var(--font-body); font-size: 1rem; transition: 0.3s;
-        }
-        .input-box input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1); }
-        .input-box .eye-icon { left: auto; right: 15px; cursor: pointer; }
-
-        /* Các tiện ích phụ */
-        .form-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; font-size: 0.9rem; }
-        .form-actions label { display: flex; align-items: center; gap: 8px; cursor: pointer; color: #64748B; }
-        .form-actions a { color: var(--accent-color); font-weight: 600; }
-
-        /* Nút Submit */
-        .submit-btn {
-            width: 100%; padding: 16px; background: var(--primary-color); color: white;
-            border: none; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer;
-            display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s;
-        }
-        .submit-btn:hover { background: #1E293B; transform: translateY(-2px); }
-
-        .secure-info { text-align: center; margin-top: 30px; color: #94A3B8; font-size: 0.8rem; display: flex; justify-content: center; gap: 20px; }
-        .secure-info span { display: flex; align-items: center; gap: 5px; }
-
-        /* --- Link chuyển trang Đăng ký/Đăng nhập --- */
-        .login-link { text-align: center; margin-top: 25px; font-size: 0.9rem; color: #64748B; }
-        .login-link a { color: var(--accent-color); font-weight: 600; margin-left: 5px; }
-        .login-link a:hover { text-decoration: underline; }
-
-
-        .glass-badge {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 15px 20px;
-            border-radius: 16px;
-            display: flex; align-items: center; gap: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-        }
-
-        .glass-badge:hover {
-            background: rgba(13, 148, 136, 0.3);
-            border-color: var(--accent-color);
-            transform: perspective(1000px) rotateX(10deg) rotateY(10deg) translateY(-15px) scale(1.05);
-            box-shadow: 0 0 20px var(--accent-color), 0 0 40px rgba(13, 148, 136, 0.2);
-        }
-
-
-        /* Điều chỉnh khung chứa logo và chữ */
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-
-        /* GIẢM KÍCH CỠ LOGO TẠI ĐÂY */
-        .brand img {
-            height: 35px; /* Bạn có thể chỉnh xuống 30px nếu muốn nhỏ hơn nữa */
-            width: auto;
-            object-fit: contain;
-            border-radius: 6px; /* Bo góc nhẹ để logo trông mềm mại hơn */
-        }
-
-    </style>
+    <link rel="stylesheet" href="login.css">
     
 </head>
+<script>
+    const loginLeft = document.querySelector('.login-left');
+    const badges = document.querySelectorAll('.glass-badge');
+    const textContent = document.querySelector('.left-text-content');
+
+    loginLeft.addEventListener('mousemove', (e) => {
+        // Tính toán tọa độ chuột theo phần trăm khung hình
+        const { width, height } = loginLeft.getBoundingClientRect();
+        const mouseX = (e.clientX / width) - 0.5;
+        const mouseY = (e.clientY / height) - 0.5;
+
+        // Làm hình nền chuyển động nhẹ
+        loginLeft.style.backgroundPosition = `${50 + mouseX * 2}% ${50 + mouseY * 2}%`;
+
+        // Làm các Badge di chuyển theo các hướng khác nhau (Parallax)
+        badges.forEach((badge, index) => {
+            const speed = (index + 1) * 20;
+            const x = mouseX * speed;
+            const y = mouseY * speed;
+            badge.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // Làm chữ di chuyển nhẹ
+        textContent.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
+    });
+
+    // Reset vị trí khi chuột rời khỏi vùng ảnh
+    loginLeft.addEventListener('mouseleave', () => {
+        badges.forEach(badge => badge.style.transform = `translate(0, 0)`);
+        textContent.style.transform = `translate(0, 0)`;
+        loginLeft.style.backgroundPosition = `center`;
+    });
+</script>
 <body>
 
     <div class="login-layout">

@@ -457,3 +457,48 @@ ul { list-style: none; }
 .socials a { width: 36px; height: 36px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; }
 .copyright { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.9rem; opacity: 0.7; }
 
+/* Kịch bản trôi lơ lửng */
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Áp dụng cho cột lớn */
+.gallery-col.large {
+    animation: heroFloat 5s ease-in-out infinite;
+}
+
+/* Áp dụng cho cột nhỏ (bay chậm hơn và lệch nhịp) */
+.gallery-col.stack {
+    animation: heroFloat 7s ease-in-out infinite 1s;
+}
+
+/* Tạm dừng trôi khi di chuột vào để người dùng dễ nhìn ảnh */
+.hero-gallery:hover .gallery-col {
+    animation-play-state: paused;
+}
+.card-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px; /* Đảm bảo bo góc mượt mà */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card-img:hover {
+    transform: scale(1.03) rotateX(2deg) rotateY(2deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+.card-img:hover img {
+    transform: scale(1.1); /* Phóng to ảnh bên trong */
+}
+
