@@ -31,7 +31,19 @@ namespace FashionEcommerce.API.Controllers
                 Id = u.Id,
                 Email = u.Email,
                 Username = u.Username,
-                FullName = u.FullName
+                FullName = u.FullName,
+                Addresses = u.UserAddresses?.Select(a => new AddressReadDto
+                {
+                    Id = a.Id,
+                    UserId = a.UserId,
+                    ContactName = a.ContactName,
+                    ContactPhone = a.ContactPhone,
+                    AddressLine = a.AddressLine,
+                    Province = a.Province,
+                    District = a.District,
+                    Ward = a.Ward,
+                    IsDefault = a.IsDefault
+                }).ToList()
             }).ToList();
         }
 
@@ -55,7 +67,19 @@ namespace FashionEcommerce.API.Controllers
                 Id = user.Id,
                 Email = user.Email,
                 Username = user.Username,
-                FullName = user.FullName
+                FullName = user.FullName,
+                Addresses = user.UserAddresses?.Select(a => new AddressReadDto
+                {
+                    Id = a.Id,
+                    UserId = a.UserId,
+                    ContactName = a.ContactName,
+                    ContactPhone = a.ContactPhone,
+                    AddressLine = a.AddressLine,
+                    Province = a.Province,
+                    District = a.District,
+                    Ward = a.Ward,
+                    IsDefault = a.IsDefault
+                }).ToList()
             };
         }
 
