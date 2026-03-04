@@ -1,4 +1,7 @@
-public class GoogleLoginDto
+namespace FashionEcommerce.Models.DTOs
 {
-    public string IdToken { get; set; }
+    public class GoogleLoginDto
+    {
+        public string IdToken { get; set; }
+    }
 }

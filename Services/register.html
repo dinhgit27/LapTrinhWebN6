@@ -1,206 +1,491 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Đăng Ký - LocalBrand</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="register.css">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="register.css" />
+
     <style>
-        /* CSS Nội bộ để đảm bảo giao diện đồng bộ ngay lập tức */
-        :root { --accent-color: #0D9488; --primary-color: #0F172A; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden; }
-        .register-layout { display: flex; height: 100vh; }
-        
-        /* PHẦN BÊN TRÁI: HIỆU ỨNG ẢNH & BADGE */
-        .register-left {
-            flex: 1; position: relative; overflow: hidden;
-            background: linear-gradient(to top, rgba(13, 148, 136, 0.9) 0%, rgba(0,0,0,0.1) 50%), 
-                        url('images/nguoimau01.jpg') center/cover no-repeat;
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 60px; color: white;
-        }
+      /* CSS Nội bộ để đảm bảo giao diện đồng bộ ngay lập tức */
+      :root {
+        --accent-color: #0d9488;
+        --primary-color: #0f172a;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .register-layout {
+        display: flex;
+        height: 100vh;
+      }
 
-        .glass-badge {
-            position: absolute; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px 20px; border-radius: 16px;
-            display: flex; align-items: center; gap: 15px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: floating 4s ease-in-out infinite; cursor: pointer;
-        }
-        
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+      /* PHẦN BÊN TRÁI: HIỆU ỨNG ẢNH & BADGE */
+      .register-left {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(
+            to top,
+            rgba(13, 148, 136, 0.9) 0%,
+            rgba(0, 0, 0, 0.1) 50%
+          ),
+          url("images/nguoimau01.jpg") center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 60px;
+        color: white;
+      }
 
-        .glass-badge:hover {
-            background: rgba(13, 148, 136, 0.3); border-color: var(--accent-color);
-            transform: perspective(1000px) rotateX(10deg) rotateY(10deg) translateY(-10px);
-            box-shadow: 0 0 25px var(--accent-color);
-        }
+      .glass-badge {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 15px 20px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: floating 4s ease-in-out infinite;
+        cursor: pointer;
+      }
 
-        .badge-vip { top: 10%; left: 40px; }
-        .badge-offer { top: 25%; right: 40px; }
-        .glass-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-color); display: flex; justify-content: center; align-items: center; }
-
-        /* PHẦN BÊN PHẢI: FORM ĐĂNG KÝ */
-        .register-right { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; background: #fff; }
-        .form-wrapper { width: 100%; max-width: 420px; }
-        .brand img { height: 35px; margin-right: 8px; vertical-align: middle; }
-        
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
-        .input-box { position: relative; }
-        .input-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 1.2rem; }
-        .input-box input { width: 100%; padding: 14px 45px; border: 1px solid #E2E8F0; border-radius: 12px; outline: none; transition: 0.3s; }
-        .input-box input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1); }
-        .eye-icon { left: auto !important; right: 15px; cursor: pointer; }
-        
-        .submit-btn {
-            width: 100%; padding: 16px; background: var(--primary-color); color: white;
-            border: none; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.3s;
+      @keyframes floating {
+        0%,
+        100% {
+          transform: translateY(0);
         }
-        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); background: #1E293B; }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .glass-badge:hover {
+        background: rgba(13, 148, 136, 0.3);
+        border-color: var(--accent-color);
+        transform: perspective(1000px) rotateX(10deg) rotateY(10deg)
+          translateY(-10px);
+        box-shadow: 0 0 25px var(--accent-color);
+      }
+
+      .badge-vip {
+        top: 10%;
+        left: 40px;
+      }
+      .badge-offer {
+        top: 25%;
+        right: 40px;
+      }
+      .glass-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* PHẦN BÊN PHẢI: FORM ĐĂNG KÝ */
+      .register-right {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background: #fff;
+      }
+      .form-wrapper {
+        width: 100%;
+        max-width: 420px;
+      }
+      .brand img {
+        height: 35px;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+      .input-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+      .input-box {
+        position: relative;
+      }
+      .input-box i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #94a3b8;
+        font-size: 1.2rem;
+      }
+      .input-box input {
+        width: 100%;
+        padding: 14px 45px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        outline: none;
+        transition: 0.3s;
+      }
+      .input-box input:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+      }
+      .eye-icon {
+        left: auto !important;
+        right: 15px;
+        cursor: pointer;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 16px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        background: #1e293b;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="register-layout">
-        <div class="register-left">
-            <div class="glass-badge badge-vip">
-                <div class="glass-icon"><i class="ri-vip-diamond-fill"></i></div>
-                <div>
-                    <div style="font-size: 0.7rem; font-weight: bold; opacity: 0.8;">THÀNH VIÊN</div>
-                    <div style="font-size: 0.9rem; font-weight: 700;">Ưu đãi độc quyền</div>
-                </div>
+      <div class="register-left">
+        <div class="glass-badge badge-vip">
+          <div class="glass-icon"><i class="ri-vip-diamond-fill"></i></div>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: bold; opacity: 0.8">
+              THÀNH VIÊN
             </div>
-
-            <div class="glass-badge badge-offer">
-                <div class="glass-icon"><i class="ri-percent-line"></i></div>
-                <div>
-                    <div style="font-size: 0.7rem; font-weight: bold; opacity: 0.8;">QUYỀN LỢI</div>
-                    <div style="font-size: 0.9rem; font-weight: 700;">Giảm 10% đơn đầu</div>
-                </div>
+            <div style="font-size: 0.9rem; font-weight: 700">
+              Ưu đãi độc quyền
             </div>
-
-            <div class="left-text-content">
-                <span style="letter-spacing: 2px; font-weight: 600; font-size: 0.8rem;">JOIN THE COMMUNITY</span>
-                <h1 style="font-family: 'Montserrat'; font-size: 3rem; line-height: 1.1; margin: 15px 0;">Tự tin <br>thể hiện cá tính</h1>
-                <p style="opacity: 0.8;">Khởi đầu hành trình định hình phong cách cùng LocalBrand ngay hôm nay.</p>
-            </div>
+          </div>
         </div>
 
-        <div class="register-right">
-            <a href="index.html" style="position: absolute; top: 40px; right: 40px; color: #64748B; text-decoration: none;"><i class="ri-home-4-line"></i> Trang chủ</a>
-
-            <div class="form-wrapper">
-                <div class="brand" style="font-family: 'Montserrat'; font-size: 1.5rem; font-weight: bold; margin-bottom: 30px;">
-                    <img src="images/logo.jpg" alt="Logo"> LocalBrand
-                </div>
-                
-                <h2 style="font-family: 'Montserrat'; font-size: 1.8rem; margin-bottom: 10px;">Tạo tài khoản ✨</h2>
-                <p style="color: #64748B; margin-bottom: 30px;">Nhanh chóng, dễ dàng và hoàn toàn miễn phí</p>
-
-                <form id="registerForm">
-                    <div class="input-group">
-                        <label>Họ và Tên</label>
-                        <div class="input-box">
-                            <i class="ri-user-line"></i>
-                            <input type="text" id="fullName" placeholder="Nguyễn Văn A" required>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label>Email</label>
-                        <div class="input-box">
-                            <i class="ri-mail-line"></i>
-                            <input type="email" id="email" placeholder="example@email.com" required>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label>Mật khẩu</label>
-                        <div class="input-box">
-                            <i class="ri-lock-line"></i>
-                            <input type="password" id="password" placeholder="Tối thiểu 8 ký tự" required>
-                            <i class="ri-eye-off-line eye-icon" id="togglePassword"></i>
-                        </div>
-                    </div>
-
-                    <div style="font-size: 0.85rem; color: #64748B; margin-bottom: 25px;">
-                        <label style="display: flex; gap: 10px; cursor: pointer;">
-                            <input type="checkbox" required style="margin-top: 3px;"> 
-                            <span>Tôi đồng ý với <a href="#" style="color: var(--accent-color); font-weight: 600; text-decoration: none;">Điều khoản dịch vụ</a> và <a href="#" style="color: var(--accent-color); font-weight: 600; text-decoration: none;">Chính sách bảo mật</a>.</span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        Đăng Ký Ngay <i class="ri-user-add-line"></i>
-                    </button>
-                </form>
-
-                <div style="text-align: center; margin-top: 25px; font-size: 0.9rem; color: #64748B;">
-                    Đã có tài khoản? <a href="login.html" style="color: var(--accent-color); font-weight: 600; text-decoration: none;">Đăng nhập ngay</a>
-                </div>
+        <div class="glass-badge badge-offer">
+          <div class="glass-icon"><i class="ri-percent-line"></i></div>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: bold; opacity: 0.8">
+              QUYỀN LỢI
             </div>
+            <div style="font-size: 0.9rem; font-weight: 700">
+              Giảm 10% đơn đầu
+            </div>
+          </div>
         </div>
+
+        <div class="left-text-content">
+          <span style="letter-spacing: 2px; font-weight: 600; font-size: 0.8rem"
+            >JOIN THE COMMUNITY</span
+          >
+          <h1
+            style="
+              font-family: &quot;Montserrat&quot;;
+              font-size: 3rem;
+              line-height: 1.1;
+              margin: 15px 0;
+            "
+          >
+            Tự tin <br />thể hiện cá tính
+          </h1>
+          <p style="opacity: 0.8">
+            Khởi đầu hành trình định hình phong cách cùng LocalBrand ngay hôm
+            nay.
+          </p>
+        </div>
+      </div>
+
+      <div class="register-right">
+        <a
+          href="index.html"
+          style="
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            color: #64748b;
+            text-decoration: none;
+          "
+          ><i class="ri-home-4-line"></i> Trang chủ</a
+        >
+
+        <div class="form-wrapper">
+          <div
+            class="brand"
+            style="
+              font-family: &quot;Montserrat&quot;;
+              font-size: 1.5rem;
+              font-weight: bold;
+              margin-bottom: 30px;
+            "
+          >
+            <img src="images/logo.jpg" alt="Logo" /> LocalBrand
+          </div>
+
+          <h2
+            style="
+              font-family: &quot;Montserrat&quot;;
+              font-size: 1.8rem;
+              margin-bottom: 10px;
+            "
+          >
+            Tạo tài khoản ✨
+          </h2>
+          <p style="color: #64748b; margin-bottom: 30px">
+            Nhanh chóng, dễ dàng và hoàn toàn miễn phí
+          </p>
+
+          <form id="registerForm">
+            <div class="input-group">
+              <label>Họ và Tên</label>
+              <div class="input-box">
+                <i class="ri-user-line"></i>
+                <input
+                  type="text"
+                  id="fullName"
+                  placeholder="Nguyễn Văn A"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Email</label>
+              <div class="input-box">
+                <i class="ri-mail-line"></i>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="example@email.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Mật khẩu</label>
+              <div class="input-box">
+                <i class="ri-lock-line"></i>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Tối thiểu 8 ký tự"
+                  required
+                />
+                <i class="ri-eye-off-line eye-icon" id="togglePassword"></i>
+              </div>
+            </div>
+
+            <div
+              style="font-size: 0.85rem; color: #64748b; margin-bottom: 25px"
+            >
+              <label style="display: flex; gap: 10px; cursor: pointer">
+                <input type="checkbox" required style="margin-top: 3px" />
+                <span
+                  >Tôi đồng ý với
+                  <a
+                    href="#"
+                    style="
+                      color: var(--accent-color);
+                      font-weight: 600;
+                      text-decoration: none;
+                    "
+                    >Điều khoản dịch vụ</a
+                  >
+                  và
+                  <a
+                    href="#"
+                    style="
+                      color: var(--accent-color);
+                      font-weight: 600;
+                      text-decoration: none;
+                    "
+                    >Chính sách bảo mật</a
+                  >.</span
+                >
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              Đăng Ký Ngay <i class="ri-user-add-line"></i>
+            </button>
+          </form>
+
+          <hr
+            style="margin: 20px 0; border: none; border-top: 1px solid #eee"
+          />
+
+          <div style="text-align: center; margin-bottom: 20px">
+            <div
+              id="g_id_onload"
+              data-client_id="491862515950-1o0cf1um5mvq3r4bsg1qc7qscb8mhhos.apps.googleusercontent.com"
+              data-callback="handleCredentialResponse"
+            ></div>
+
+            <div
+              class="g_id_signin"
+              data-type="standard"
+              data-size="large"
+              data-theme="outline"
+              data-text="sign_in_with"
+              data-shape="pill"
+              data-logo_alignment="left"
+            ></div>
+          </div>
+
+          <div
+            style="
+              text-align: center;
+              margin-top: 25px;
+              font-size: 0.9rem;
+              color: #64748b;
+            "
+          >
+            Đã có tài khoản?
+            <a
+              href="login.html"
+              style="
+                color: var(--accent-color);
+                font-weight: 600;
+                text-decoration: none;
+              "
+              >Đăng nhập ngay</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        const registerLeft = document.querySelector('.register-left');
-        registerLeft.addEventListener('mousemove', (e) => {
-            const { width, height } = registerLeft.getBoundingClientRect();
-            const mouseX = (e.clientX / width) - 0.5;
-            const mouseY = (e.clientY / height) - 0.5;
-            registerLeft.style.backgroundPosition = `${50 + mouseX * 2}% ${50 + mouseY * 2}%`;
-        });
+      const registerLeft = document.querySelector(".register-left");
+      registerLeft.addEventListener("mousemove", (e) => {
+        const { width, height } = registerLeft.getBoundingClientRect();
+        const mouseX = e.clientX / width - 0.5;
+        const mouseY = e.clientY / height - 0.5;
+        registerLeft.style.backgroundPosition = `${50 + mouseX * 2}% ${50 + mouseY * 2}%`;
+      });
 
-        // 2. Logic Đăng ký và kết nối API
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+      // 2. Logic Đăng ký và kết nối API
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
 
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+          const fullName = document.getElementById("fullName").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
 
-            try {
-                // HÃY ĐẢM BẢO PORT TRÙNG VỚI BACKEND (VD: 7001)
-                const response = await fetch('https://localhost:7001/api/Auth/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ fullName, email, password })
-                });
+          try {
+            // HÃY ĐẢM BẢO PORT TRÙNG VỚI BACKEND (VD: 7001)
+            const response = await fetch(
+              "http://localhost:5000/api/Auth/register",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fullName, email, password }),
+              },
+            );
 
-                if (response.ok) {
-                    const data = await response.json();
-                    
-                    // TỰ ĐỘNG ĐĂNG NHẬP: Lưu Token vào LocalStorage
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('userId', data.userId);
-                    localStorage.setItem('fullName', data.fullName);
+            if (response.ok) {
+              const data = await response.json();
 
-                    alert('Chúc mừng! Bạn đã đăng ký thành viên thành công.');
-                    window.location.href = 'index.html'; 
-                } else {
-                    const errorMsg = await response.text();
-                    alert('Lỗi: ' + errorMsg);
-                }
-            } catch (error) {
-                alert('Không thể kết nối server! Hãy chắc chắn API của bạn đang chạy.');
+              // TỰ ĐỘNG ĐĂNG NHẬP: Lưu Token vào LocalStorage
+              localStorage.setItem("token", data.token);
+              localStorage.setItem("userId", data.userId);
+              localStorage.setItem("fullName", data.fullName);
+
+              alert("Chúc mừng! Bạn đã đăng ký thành viên thành công.");
+              window.location.href = "index.html";
+            } else {
+              const errorMsg = await response.text();
+              alert("Lỗi: " + errorMsg);
             }
+          } catch (error) {
+            alert(
+              "Không thể kết nối server! Hãy chắc chắn API của bạn đang chạy.",
+            );
+          }
         });
 
-        // 3. Hiện/Ẩn mật khẩu
-        const togglePassword = document.querySelector('#togglePassword');
-        const passwordInput = document.querySelector('#password');
-        togglePassword.addEventListener('click', function () {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.classList.toggle('ri-eye-line');
-            this.classList.toggle('ri-eye-off-line');
-        });
+      // 3. Hiện/Ẩn mật khẩu
+      const togglePassword = document.querySelector("#togglePassword");
+      const passwordInput = document.querySelector("#password");
+      togglePassword.addEventListener("click", function () {
+        const type =
+          passwordInput.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput.setAttribute("type", type);
+        this.classList.toggle("ri-eye-line");
+        this.classList.toggle("ri-eye-off-line");
+      });
     </script>
-</body>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <div
+      id="g_id_onload"
+      data-client_id="YOUR_GOOGLE_CLIENT_ID"
+      data-callback="handleCredentialResponse"
+    ></div>
+
+    <div class="g_id_signin" data-type="standard"></div>
+    <script>
+      function handleCredentialResponse(response) {
+        // Gửi token ID đến backend để xác thực và đăng nhập
+        fetch("http://localhost:5000/api/Auth/google-login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idToken: response.credential }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.token) {
+              localStorage.setItem("token", data.token);
+              localStorage.setItem("userId", data.userId);
+              localStorage.setItem("fullName", data.fullName);
+              alert("Đăng nhập Google thành công!");
+              window.location.href = "index.html";
+            } else {
+              alert("Đăng nhập Google thất bại!");
+            }
+          })
+          .catch(() => {
+            alert("Lỗi kết nối server khi đăng nhập Google!");
+          });
+      }
+    </script>
+  </body>
 </html>

@@ -1,14 +1,14 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using FashionEcommerce.Models;
-using FashionEcommerce.Data;
-using FashionEcommerce.Models.DTOs; // Đảm bảo DTOs nằm trong namespace này
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BCrypt.Net;
+using FashionEcommerce.Data;
+using FashionEcommerce.Models;
+using FashionEcommerce.Models.DTOs; // Đảm bảo DTOs nằm trong namespace này
 using Google.Apis.Auth;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FashionEcommerce.API.Controllers
 {
@@ -42,7 +42,7 @@ namespace FashionEcommerce.API.Controllers
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password), // Dùng BCrypt đồng bộ
                 Role = "Customer",
                 CreatedAt = DateTime.UtcNow,
-                IsLocked = false
+                IsLocked = false,
             };
 
             _context.Users.Add(user);
@@ -50,12 +50,14 @@ namespace FashionEcommerce.API.Controllers
 
             // 3. Tạo Token và trả về thông tin cho Frontend
             var token = GenerateJwt(user);
-            return Ok(new 
-            { 
-                token = token,
-                userId = user.Id,
-                fullName = user.FullName
-            });
+            return Ok(
+                new
+                {
+                    token = token,
+                    userId = user.Id,
+                    fullName = user.FullName,
+                }
+            );
         }
 
         // --- II. ĐĂNG NHẬP (LOGIN) ---
@@ -63,8 +65,7 @@ namespace FashionEcommerce.API.Controllers
         public async Task<IActionResult> Login(LoginDto dto)
         {
             // 1. Tìm User theo Email
-            var user = await _context.Users
-                .FirstOrDefaultAsync(x => x.Email == dto.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == dto.Email);
 
             // 2. Kiểm tra sự tồn tại và mật khẩu
             if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
@@ -77,29 +78,43 @@ namespace FashionEcommerce.API.Controllers
             // 4. Tạo Token và trả về (Khớp với yêu cầu của login.html)
             var token = GenerateJwt(user);
 
-            return Ok(new 
-            { 
-                token = token,
-                userId = user.Id,
-                fullName = user.FullName,
-                role = user.Role
-            });
+            return Ok(
+                new
+                {
+                    token = token,
+                    userId = user.Id,
+                    fullName = user.FullName,
+                    role = user.Role,
+                }
+            );
         }
 
         // --- III. ĐĂNG NHẬP GOOGLE (GOOGLE LOGIN) ---
         [HttpPost("google-login")]
         public async Task<IActionResult> GoogleLogin(GoogleLoginDto dto)
         {
-            try 
+            try
             {
                 var payload = await GoogleJsonWebSignature.ValidateAsync(dto.IdToken);
 
-                var user = await _context.Users
-                    .FirstOrDefaultAsync(x => x.Email == payload.Email);
+                if (!payload.EmailVerified)
+                    return BadRequest("Email Google chưa được xác thực.");
 
-                // Nếu chưa có tài khoản thì tạo mới
-                if (user == null)
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == payload.Email);
+
+                // Nếu đã có email trong hệ thống
+                if (user != null)
                 {
+                    // Nếu chưa liên kết Google thì gán GoogleId
+                    if (string.IsNullOrEmpty(user.GoogleId))
+                    {
+                        user.GoogleId = payload.Subject;
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                else
+                {
+                    // Tạo user mới nếu chưa tồn tại
                     user = new User
                     {
                         Email = payload.Email,
@@ -107,7 +122,8 @@ namespace FashionEcommerce.API.Controllers
                         Username = payload.Email.Split('@')[0],
                         GoogleId = payload.Subject,
                         Role = "Customer",
-                        CreatedAt = DateTime.UtcNow
+                        CreatedAt = DateTime.UtcNow,
+                        IsLocked = false,
                     };
 
                     _context.Users.Add(user);
@@ -115,13 +131,18 @@ namespace FashionEcommerce.API.Controllers
                 }
 
                 var token = GenerateJwt(user);
-                return Ok(new { 
-                    token = token, 
-                    userId = user.Id, 
-                    fullName = user.FullName 
-                });
+
+                return Ok(
+                    new
+                    {
+                        token,
+                        userId = user.Id,
+                        fullName = user.FullName,
+                        role = user.Role,
+                    }
+                );
             }
-            catch (Exception)
+            catch
             {
                 return BadRequest("Xác thực Google thất bại.");
             }
@@ -135,11 +156,10 @@ namespace FashionEcommerce.API.Controllers
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim("FullName", user.FullName ?? "")
+                new Claim("FullName", user.FullName ?? ""),
             };
 
-            var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -147,9 +167,9 @@ namespace FashionEcommerce.API.Controllers
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(
-                    Convert.ToDouble(_config["Jwt:ExpireMinutes"])),
-                signingCredentials: creds);
+                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_config["Jwt:ExpireMinutes"])),
+                signingCredentials: creds
+            );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
