@@ -1,4 +1,5 @@
 using FashionEcommerce.Data;
+using FashionEcommerce.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -10,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Đăng ký các Services
+builder.Services.AddScoped<IPromotionService, PromotionService>();
 
 // Minimal JWT authentication skeleton (replace with real settings)
 var jwtKey = builder.Configuration["Jwt:Key"] ?? "ChangeThisToASecureKey";
