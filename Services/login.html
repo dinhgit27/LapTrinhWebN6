@@ -171,8 +171,8 @@
             const password = document.getElementById('password').value;
 
             try {
-                // HÃY KIỂM TRA SỐ PORT TRONG VISUAL STUDIO CỦA BẠN (VD: 7001)
-                const response = await fetch('https://localhost:7001/api/Auth/login', { 
+                // HÃY KIỂM TRA SỐ PORT TRONG VISUAL STUDIO CỦA BẠN (VD: 5000)
+                const response = await fetch('http://localhost:5000/api/Auth/login', { 
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
