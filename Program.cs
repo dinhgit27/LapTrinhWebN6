@@ -1,5 +1,6 @@
 using System.Text;
 using FashionEcommerce.Data;
+using FashionEcommerce.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -58,6 +59,11 @@ builder
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+// --- 3. ĐĂNG KÝ DỊCH VỤ TÙYCHỈNH ---
+
+// Đăng ký Promotion Engine Service
+builder.Services.AddScoped<IPromotionService, PromotionService>();
 
 var app = builder.Build();
 
