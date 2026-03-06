@@ -78,10 +78,18 @@ namespace FashionEcommerce.API.Controllers
             // 4. Tạo Token và trả về (Khớp với yêu cầu của login.html)
             var token = GenerateJwt(user);
 
+            var refreshToken = GenerateRefreshToken();
+
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+
+            await _context.SaveChangesAsync();
+
             return Ok(
                 new
                 {
                     token = token,
+                    refreshToken = refreshToken,
                     userId = user.Id,
                     fullName = user.FullName,
                     role = user.Role,
@@ -148,6 +156,30 @@ namespace FashionEcommerce.API.Controllers
             }
         }
 
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken(RefreshTokenDto dto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x =>
+                x.RefreshToken == dto.RefreshToken
+            );
+
+            if (user == null)
+                return Unauthorized("Refresh token không hợp lệ.");
+
+            if (user.RefreshTokenExpiryTime < DateTime.Now)
+                return Unauthorized("Refresh token đã hết hạn.");
+
+            var newJwt = GenerateJwt(user);
+            var newRefreshToken = GenerateRefreshToken();
+
+            user.RefreshToken = newRefreshToken;
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { token = newJwt, refreshToken = newRefreshToken });
+        }
+
         // --- IV. TẠO MÃ JWT (TOKEN GENERATION) ---
         private string GenerateJwt(User user)
         {
@@ -172,6 +204,17 @@ namespace FashionEcommerce.API.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[64];
+
+            using (var rng = System.Security.Cryptography.RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+                return Convert.ToBase64String(randomNumber);
+            }
         }
     }
 }

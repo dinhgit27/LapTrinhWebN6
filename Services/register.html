@@ -464,11 +464,16 @@
     <div class="g_id_signin" data-type="standard"></div>
     <script>
       function handleCredentialResponse(response) {
-        // Gửi token ID đến backend để xác thực và đăng nhập
+        // Gửi token ID đến backend để xác thực và đăng
+        console.log("Google Token:", response.credential);
         fetch("http://localhost:5000/api/Auth/google-login", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ idToken: response.credential }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            idToken: response.credential,
+          }),
         })
           .then((res) => res.json())
           .then((data) => {
