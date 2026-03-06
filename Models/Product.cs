@@ -19,11 +19,7 @@ namespace FashionEcommerce.Models
         [StringLength(200)]
         public string Slug { get; set; }  // Slug URL-friendly duy nhất
 
-<<<<<<< HEAD
         public string Description { get; set; }  // Mô tả chi tiết sản phẩm
-=======
-        public string? Description { get; set; }  // Mô tả chi tiết sản phẩm
->>>>>>> origin/haihoang
 
         [Required]
         public decimal Price { get; set; }  // Giá cơ bản
@@ -32,21 +28,12 @@ namespace FashionEcommerce.Models
         public int CategoryId { get; set; }  // Khóa ngoại đến Category
 
         [StringLength(500)]
-<<<<<<< HEAD
         public string Thumbnail { get; set; }  // URL ảnh đại diện
 
         public bool IsActive { get; set; }  // Sản phẩm có đang bán không
 
         // Navigation properties
         public virtual Category Category { get; set; }  // Danh mục sản phẩm
-=======
-        public string? Thumbnail { get; set; }  // URL ảnh đại diện
-
-        public bool? IsActive { get; set; }  // Sản phẩm có đang bán không
-
-        // Navigation properties
-        public virtual Category? Category { get; set; }  // Danh mục sản phẩm
->>>>>>> origin/haihoang
         public virtual ICollection<ProductVariant> ProductVariants { get; set; } = new HashSet<ProductVariant>();  // Các biến thể (màu, size)
         public virtual ICollection<ProductReview> ProductReviews { get; set; } = new HashSet<ProductReview>();  // Đánh giá từ khách hàng
         public virtual ICollection<ProductImage> ProductImages { get; set; } = new HashSet<ProductImage>();  // Hình ảnh bổ sung

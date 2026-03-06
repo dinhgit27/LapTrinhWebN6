@@ -33,6 +33,10 @@ namespace FashionEcommerce.Models
 
         public DateTime? PublishedAt { get; set; }  // Thời gian xuất bản
 
+        public DateTime CreatedAt { get; set; }  // Thời gian tạo
+
+        public DateTime? UpdatedAt { get; set; }  // Thời gian cập nhật
+
         // Navigation properties
         public virtual ArticleCategory Category { get; set; }  // Danh mục bài viết
     }

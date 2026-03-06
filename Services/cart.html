@@ -129,6 +129,18 @@
         });
 
         document.addEventListener('DOMContentLoaded', renderCart);
+
+        async function syncCartToServer(cart) {
+            const token = localStorage.getItem('token');
+            await fetch('http://localhost:5000/api/Cart/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(cart)
+            });
+        }
     </script>
 </body>
 </html>

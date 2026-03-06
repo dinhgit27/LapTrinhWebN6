@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using YourProjectName.Models;
+using FashionEcommerce.Models;      // Để nhận diện CartItem, Order
+using FashionEcommerce.Models.DTOs; // Một số DTO của bạn đang nằm trong namespace này
+using FashionEcommerce.DTOs;        // Để nhận diện CartRequest, CheckoutRequest
 
-namespace YourProjectName.Controllers
+namespace FashionEcommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

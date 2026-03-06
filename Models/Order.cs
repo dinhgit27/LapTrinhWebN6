@@ -1,61 +1,65 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FashionEcommerce.Models
 {
-    // Model đại diện cho đơn hàng
-    // Chứa thông tin tổng quan về đơn hàng, khách hàng, địa chỉ giao hàng và trạng thái
     public class Order
     {
         [Key]
-        public int Id { get; set; }  // Khóa chính
+        public int OrderId { get; set; } // Sửa từ Id thành OrderId để khớp Controller
 
         [Required]
         [StringLength(20)]
-        public string OrderCode { get; set; }  // Mã đơn hàng duy nhất
+        public string OrderCode { get; set; } = string.Empty;
 
-        public int? UserId { get; set; }  // Khóa ngoại đến User (có thể null cho khách vãng lai)
+        public int? UserId { get; set; }
 
-        public DateTime? OrderDate { get; set; }  // Ngày đặt hàng
+        public DateTime? OrderDate { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string ShippingName { get; set; }  // Tên người nhận
+        public string ShippingName { get; set; } = string.Empty;
+
+        // Tạo bí danh để Controller không báo lỗi 'CustomerName'
+        [NotMapped]
+        public string CustomerName { get => ShippingName; set => ShippingName = value; }
 
         [Required]
         [StringLength(500)]
-        public string ShippingAddress { get; set; }  // Địa chỉ giao hàng
+        public string ShippingAddress { get; set; } = string.Empty;
 
         [Required]
         [StringLength(15)]
-        public string ShippingPhone { get; set; }  // Số điện thoại giao hàng
+        public string ShippingPhone { get; set; } = string.Empty;
 
         [Required]
-        public decimal TotalAmount { get; set; }  // Tổng tiền trước giảm giá
+        public decimal TotalAmount { get; set; }
 
-        public decimal? DiscountAmount { get; set; }  // Số tiền giảm giá
+        public decimal? DiscountAmount { get; set; }
 
         [StringLength(50)]
-        public string? CouponCode { get; set; }  // Mã giảm giá áp dụng
+        public string? CouponCode { get; set; }
 
-        public decimal? ShippingFee { get; set; }  // Phí vận chuyển
+        public decimal? ShippingFee { get; set; }
 
         [Required]
-        public decimal FinalAmount { get; set; }  // Tổng tiền cuối cùng
+        public decimal FinalAmount { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string PaymentMethod { get; set; }  // Phương thức thanh toán
+        public string PaymentMethod { get; set; } = "COD";
 
         [StringLength(20)]
-        public string? PaymentStatus { get; set; }  // Trạng thái thanh toán
+        public string? PaymentStatus { get; set; }
 
-        public int? Status { get; set; }  // Trạng thái đơn hàng (0: Pending, 1: Confirmed, etc.)
+        public int? Status { get; set; }
 
-        // Navigation properties
-        public virtual User? User { get; set; }  // Khách hàng đặt hàng
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new HashSet<OrderDetail>();  // Chi tiết sản phẩm trong đơn
-        public virtual ICollection<OrderStatusHistory> OrderStatusHistories { get; set; } = new HashSet<OrderStatusHistory>();  // Lịch sử thay đổi trạng thái
+        public virtual User? User { get; set; }
+        
+        // Dùng ICollection để linh hoạt hơn
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public virtual ICollection<OrderStatusHistory> OrderStatusHistories { get; set; } = new List<OrderStatusHistory>();
     }
 }

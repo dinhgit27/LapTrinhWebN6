@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 using System.Text;
 using FashionEcommerce.Data;
 using FashionEcommerce.Services;
@@ -9,22 +8,10 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 // --- 1. ĐĂNG KÝ DỊCH VỤ (SERVICES) ---
-=======
-using FashionEcommerce.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
->>>>>>> origin/haihoang
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-<<<<<<< HEAD
 // Cấu hình CORS - PHẢI ĐẶT TRƯỚC builder.Build()
 builder.Services.AddCors(options =>
 {
@@ -55,14 +42,6 @@ builder
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     })
     .AddJwtBearer(options =>
-=======
-// Minimal JWT authentication skeleton (replace with real settings)
-var jwtKey = builder.Configuration["Jwt:Key"] ?? "ChangeThisToASecureKey";
-var key = Encoding.UTF8.GetBytes(jwtKey);
-
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
->>>>>>> origin/haihoang
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -72,7 +51,6 @@ builder.Services.AddAuthentication("Bearer")
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-<<<<<<< HEAD
             IssuerSigningKey = new SymmetricSecurityKey(key), // Sử dụng biến key đã tạo
         };
     });
@@ -106,29 +84,3 @@ app.UseAuthorization(); // Kiểm tra quyền hạn
 app.MapControllers();
 
 app.Run();
-=======
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-        };
-    });
-
-// Configure DbContext with SQL Server
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
-
-app.Run();
->>>>>>> origin/haihoang

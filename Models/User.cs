@@ -12,39 +12,25 @@ namespace FashionEcommerce.Models
         public int Id { get; set; }  // Khóa chính
 
         [StringLength(50)]
-<<<<<<< HEAD
         public string Username { get; set; }  // Tên đăng nhập (có thể null)
 
         [StringLength(255)]
         public string PasswordHash { get; set; }  // Mật khẩu đã hash (có thể null cho đăng nhập Google)
-=======
-        public string? Username { get; set; }  // Tên đăng nhập (có thể null)
-
-        [StringLength(255)]
-        public string? PasswordHash { get; set; }  // Mật khẩu đã hash (có thể null cho đăng nhập Google)
->>>>>>> origin/haihoang
 
         [Required]
         [StringLength(100)]
         public string Email { get; set; } = null!;  // Email duy nhất, bắt buộc
 
         [StringLength(100)]
-<<<<<<< HEAD
         public string GoogleId { get; set; }  // ID Google cho đăng nhập OAuth
 
         public DateTime DateOfBirth { get; set; }  // Ngày sinh
-=======
-        public string? GoogleId { get; set; }  // ID Google cho đăng nhập OAuth
-
-        public DateTime? DateOfBirth { get; set; }  // Ngày sinh
->>>>>>> origin/haihoang
 
         [Required]
         [StringLength(100)]
         public string FullName { get; set; } = null!;  // Họ và tên đầy đủ
 
         [StringLength(15)]
-<<<<<<< HEAD
         public string PhoneNumber { get; set; }  // Số điện thoại
 
         [StringLength(500)]
@@ -56,19 +42,6 @@ namespace FashionEcommerce.Models
         public bool IsLocked { get; set; }  // Tài khoản có bị khóa không
 
         public DateTime CreatedAt { get; set; }  // Thời gian tạo tài khoản
-=======
-        public string? PhoneNumber { get; set; }  // Số điện thoại
-
-        [StringLength(500)]
-        public string? AvatarUrl { get; set; }  // URL ảnh đại diện
-
-        [StringLength(20)]
-        public string? Role { get; set; }  // Vai trò (Customer, Admin, etc.)
-
-        public bool? IsLocked { get; set; }  // Tài khoản có bị khóa không
-
-        public DateTime? CreatedAt { get; set; }  // Thời gian tạo tài khoản
->>>>>>> origin/haihoang
 
         // Navigation properties - Các mối quan hệ
         public virtual ICollection<UserAddress> UserAddresses { get; set; } = new HashSet<UserAddress>();  // Địa chỉ giao hàng

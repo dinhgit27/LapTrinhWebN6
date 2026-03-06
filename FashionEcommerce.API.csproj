@@ -2,11 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-<<<<<<< HEAD
     <Nullable>disable</Nullable>
-=======
-    <Nullable>enable</Nullable>
->>>>>>> origin/haihoang
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>FashionEcommerce.API</RootNamespace>
   </PropertyGroup>

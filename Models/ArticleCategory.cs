@@ -18,6 +18,10 @@ namespace FashionEcommerce.Models
         [StringLength(100)]
         public string Slug { get; set; }  // Slug URL-friendly duy nhất
 
+        public DateTime CreatedAt { get; set; }  // Thời gian tạo
+
+        public DateTime? UpdatedAt { get; set; }  // Thời gian cập nhật
+
         // Navigation properties
         public virtual ICollection<Article> Articles { get; set; } = new HashSet<Article>();  // Các bài viết trong danh mục
     }
