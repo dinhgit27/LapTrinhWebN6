@@ -416,11 +416,6 @@ C:\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.MvcApplicationPartsAssemb
 C:\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.sourcelink.json
 C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets.build.json
 C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets.development.json
-C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets\msbuild.FashionEcommerce.API.Microsoft.AspNetCore.StaticWebAssets.props
-C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets\msbuild.build.FashionEcommerce.API.props
-C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.FashionEcommerce.API.props
-C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.FashionEcommerce.API.props
-C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets.pack.json
 C:\LapTrinhWebN6\obj\Debug\net8.0\scopedcss\bundle\FashionEcommerce.API.styles.css
 C:\LapTrinhWebN6\obj\Debug\net8.0\FashionE.81872EB9.Up2Date
 C:\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.dll
@@ -428,3 +423,11 @@ C:\LapTrinhWebN6\obj\Debug\net8.0\refint\FashionEcommerce.API.dll
 C:\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.pdb
 C:\LapTrinhWebN6\obj\Debug\net8.0\FashionEcommerce.API.genruntimeconfig.cache
 C:\LapTrinhWebN6\obj\Debug\net8.0\ref\FashionEcommerce.API.dll
+C:\LapTrinhWebN6\bin\Debug\net8.0\FashionEcommerce.API.staticwebassets.endpoints.json
+C:\LapTrinhWebN6\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\LapTrinhWebN6\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\LapTrinhWebN6\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\LapTrinhWebN6\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\LapTrinhWebN6\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\LapTrinhWebN6\obj\Debug\net8.0\swae.build.ex.cache

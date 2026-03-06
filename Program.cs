@@ -15,13 +15,17 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(
-        "AllowFrontend",
+        "AllowAll",
         policy =>
         {
             policy
-                .WithOrigins("http://127.0.0.1:5500, http://localhost:5500")
+                .WithOrigins(
+                    "http://127.0.0.1:5500",
+                    "http://localhost:5500"
+                )
                 .AllowAnyHeader()
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowCredentials();
         }
     );
 });
@@ -66,7 +70,7 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 // THỨ TỰ QUAN TRỌNG: CORS phải nằm trước Authentication
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAll");
 
 app.UseAuthentication(); // Xác thực danh tính
 app.UseAuthorization(); // Kiểm tra quyền hạn
