@@ -18,7 +18,7 @@ namespace FashionEcommerce.Models
         [StringLength(100)]
         public string Slug { get; set; }  // Slug URL-friendly duy nhất
 
-        public int ParentId { get; set; }  // Khóa ngoại đến danh mục cha (self-referencing)
+        public int? ParentId { get; set; }  // Khóa ngoại đến danh mục cha (self-referencing)
 
         public bool IsActive { get; set; }  // Danh mục có đang hoạt động không
 

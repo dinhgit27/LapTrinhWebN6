@@ -117,6 +117,17 @@ namespace FashionEcommerce.Data
                 .WithMany(u => u.UserAddresses)
                 .HasForeignKey(ua => ua.UserId)
                 .OnDelete(DeleteBehavior.Cascade);  // Xóa user thì xóa addresses
+            modelBuilder.Entity<CartItem>()
+                .HasOne(ci => ci.Product)
+                .WithMany()
+                .HasForeignKey(ci => ci.ProductId)
+                .OnDelete(DeleteBehavior.Restrict); // Thay đổi từ Cascade sang Restrict
+
+            modelBuilder.Entity<CartItem>()
+                .HasOne(ci => ci.ProductVariant)
+                .WithMany()
+                .HasForeignKey(ci => ci.ProductVariantId)
+                .OnDelete(DeleteBehavior.NoAction); // Hoặc NoAction
         }
     }
 }

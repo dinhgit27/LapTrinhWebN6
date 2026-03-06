@@ -52,7 +52,7 @@ namespace FashionEcommerce.API.Controllers
                     .Include(c => c.Parent)
                     .Include(c => c.Children)
                     .Include(c => c.Products)
-                    .Where(c => c.ParentId == 0)  // Chỉ lấy danh mục gốc (không có parent)
+                    .Where(c => c.ParentId == null || c.ParentId == 0)  // Chỉ lấy danh mục gốc (không có parent)
                     .ToListAsync();
 
                 return Ok(categories.Select(MapToCategoryReadDto).ToList());
@@ -80,7 +80,7 @@ namespace FashionEcommerce.API.Controllers
 
                 // Chỉ trả về danh mục gốc, các danh mục con sẽ được bao gồm trong thuộc tính Children
                 var rootCategories = categories
-                    .Where(c => c.ParentId == 0)
+                    .Where(c => c.ParentId == null || c.ParentId == 0)
                     .Select(MapToCategoryReadDto)
                     .ToList();
 
@@ -181,12 +181,13 @@ namespace FashionEcommerce.API.Controllers
                     if (await HasCircularReference(dto.ParentId.Value, 0))
                         return BadRequest(new { message = "Không thể tạo danh mục con của chính nó" });
                 }
+                int? finalParentId = (dto.ParentId.HasValue && dto.ParentId > 0) ? dto.ParentId : null;
 
                 var category = new Category
                 {
                     Name = dto.Name.Trim(),
                     Slug = dto.Slug.ToLower().Trim(),
-                    ParentId = dto.ParentId ?? 0,
+                    ParentId = finalParentId,
                     IsActive = dto.IsActive
                 };
 
@@ -365,29 +366,33 @@ namespace FashionEcommerce.API.Controllers
         /// Kiểm tra có vòng lặp phân cấp (circular reference)
         /// Tránh tình huống: A -> B -> C -> A
         /// </summary>
+        // Tìm hàm HasCircularReference và sửa đoạn while
         private async Task<bool> HasCircularReference(int parentId, int categoryId)
         {
             var visited = new HashSet<int>();
-            int currentId = parentId;
+            int? currentId = parentId; // Đổi kiểu ở đây thành int?
 
-            while (currentId > 0)
+            while (currentId.HasValue && currentId > 0)
             {
                 if (currentId == categoryId)
-                    return true;  // Phát hiện vòng lặp
+                    return true;
 
-                if (visited.Contains(currentId))
-                    return true;  // Phát hiện vòng lặp
+                if (visited.Contains(currentId.Value))
+                    return true;
 
-                visited.Add(currentId);
+                visited.Add(currentId.Value);
 
-                var parent = await _context.Categories.FindAsync(currentId);
-                if (parent == null || parent.ParentId == 0)
+                var parent = await _context.Categories.AsNoTracking()
+                    .FirstOrDefaultAsync(c => c.Id == currentId);
+
+                if (parent == null || parent.ParentId == null || parent.ParentId == 0)
                     break;
 
-                currentId = parent.ParentId;
+                currentId = parent.ParentId; // Bây giờ gán int? sang int? sẽ không còn lỗi
             }
 
             return false;
+
         }
     }
 }
