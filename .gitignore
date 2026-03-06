@@ -1,0 +1,8 @@
+# .gitignore mẫu cho .NET
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+appsettings.Development.json
